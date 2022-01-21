@@ -7,10 +7,10 @@ import (
 
 func main() {
 	fmt.Println("Starting server on port 8090")
-	http.HandleFunc("/", hello)
+	http.HandleFunc("/", RootHandler)
 	http.ListenAndServe(":8090", nil)
 }
 
-func hello(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "hello from some-server\n")
+func RootHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(w, "some-server\n")
 }
