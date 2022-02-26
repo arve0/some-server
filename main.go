@@ -3,12 +3,18 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func main() {
-	fmt.Println("Starting server on port 8090")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8090"
+	}
+
+	fmt.Printf("Starting server on port %s", port)
 	http.HandleFunc("/", RootHandler)
-	http.ListenAndServe(":8090", nil)
+	http.ListenAndServe(fmt.Sprintf(":%s", port), nil)
 }
 
 func RootHandler(w http.ResponseWriter, req *http.Request) {
